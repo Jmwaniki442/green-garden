@@ -5,15 +5,17 @@ import Hero from "./components/sections/Hero";
 import Stats from "./components/sections/Stats";
 import Features from "./components/sections/Features";
 import Products from "./components/sections/Products";
+import Testimonials from "./components/sections/Testimonials";
 const App = () => {
   return (
     <div className="min-h-screen bg-lightblue-50 text-lightblue-800">
       <Header />
       <Navigation />
       <Hero />
-      <Stats />
-      <Features />
       <Products />
+      <Features />
+      <Testimonials />
+      <Stats />
     </div>
   );
 };
