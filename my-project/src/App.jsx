@@ -7,12 +7,14 @@ import Features from "./components/sections/Features";
 import Products from "./components/sections/Products";
 import Testimonials from "./components/sections/Testimonials";
 import Contacts from "./components/sections/Contacts";
+import About from "./components/sections/About";
 const App = () => {
   return (
     <div className="min-h-screen bg-lightblue-50 text-lightblue-800">
       <Header />
       <Navigation />
       <Hero />
+      <About />
       <Products />
       <Features />
       <Testimonials />

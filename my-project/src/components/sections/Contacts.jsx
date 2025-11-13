@@ -1,87 +1,85 @@
 import React, { useState } from "react";
-import { Phone, Mail, MapPin, Send, CheckCircle } from "lucide-react";
+import { Mail, Phone, MapPin, Send } from "lucide-react";
+import Section from "../common/Section";
+import Button from "../common/Button";
 
 const Contact = () => {
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 3000); // Hide message after 3s
+    // For now just simulate submission
+    console.log("Form submitted:", formData);
+    setSubmitted(true);
+    setFormData({ name: "", email: "", message: "" });
   };
 
   return (
-    <section id="contact" className="py-20 bg-green-50">
-      <div className="max-w-6xl mx-auto px-6 text-center">
-        <h2 className="text-4xl font-bold text-green-800 mb-8">
-          Get in Touch with Us
-        </h2>
-        <p className="text-gray-600 max-w-2xl mx-auto mb-12">
-          Have a question or want to place an order? Reach out using the form
-          below or contact us directly. We’d love to hear from you!
-        </p>
-
-        <div className="grid md:grid-cols-2 gap-10">
-          {/* Contact Info */}
-          <div className="text-left space-y-6">
-            <div className="flex items-center space-x-4">
-              <Phone className="text-green-600" size={28} />
-              <p className="text-lg">+254 712 345 678</p>
-            </div>
-            <div className="flex items-center space-x-4">
-              <Mail className="text-green-600" size={28} />
-              <p className="text-lg">info@freshfarm.co.ke</p>
-            </div>
-            <div className="flex items-center space-x-4">
-              <MapPin className="text-green-600" size={28} />
-              <p className="text-lg">Nairobi, Kenya</p>
-            </div>
+    <Section id="contact" title="Get in Touch" bg="bg-neutralLight">
+      <div className="container mx-auto px-6 py-16 flex flex-col md:flex-row gap-12">
+        
+        {/* Contact Info */}
+        <div className="md:w-1/2 space-y-6">
+          <div className="flex items-center gap-4">
+            <Phone className="text-primary" />
+            <span className="font-semibold">+1 (555) 123-4567</span>
           </div>
+          <div className="flex items-center gap-4">
+            <Mail className="text-primary" />
+            <span className="font-semibold">support@freshbasket.com</span>
+          </div>
+          <div className="flex items-center gap-4">
+            <MapPin className="text-primary" />
+            <span className="font-semibold">123 Market Street, Cityville</span>
+          </div>
+          <p className="text-gray-600 mt-4">
+            Have questions or feedback? Fill out the form, and we'll get back to you promptly!
+          </p>
+        </div>
 
-          {/* Contact Form */}
-          <form
-            onSubmit={handleSubmit}
-            className="bg-white p-8 rounded-2xl shadow-md space-y-6 relative"
-          >
+        {/* Contact Form */}
+        <div className="md:w-1/2">
+          {submitted && (
+            <p className="mb-4 text-green-600 font-semibold">Thank you! Your message has been sent.</p>
+          )}
+          <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
             <input
               type="text"
+              name="name"
               placeholder="Your Name"
+              value={formData.name}
+              onChange={handleChange}
+              className="p-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary"
               required
-              className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-400"
             />
             <input
               type="email"
+              name="email"
               placeholder="Your Email"
+              value={formData.email}
+              onChange={handleChange}
+              className="p-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary"
               required
-              className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-400"
             />
             <textarea
-              rows="4"
+              name="message"
               placeholder="Your Message"
+              value={formData.message}
+              onChange={handleChange}
+              className="p-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary resize-none"
+              rows="5"
               required
-              className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-400"
-            ></textarea>
-            <button
-              type="submit"
-              className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-lg flex items-center justify-center space-x-2 transition-all"
-            >
-              <Send size={20} />
-              <span>Send Message</span>
-            </button>
-
-            {/* Success Message */}
-            {isSubmitted && (
-              <div className="absolute inset-0 flex flex-col items-center justify-center bg-white/90 rounded-2xl backdrop-blur-sm transition-all">
-                <CheckCircle className="text-green-600 mb-2" size={40} />
-                <p className="text-green-700 font-semibold text-lg">
-                  Message sent successfully!
-                </p>
-              </div>
-            )}
+            />
+            <Button text="Send Message" type="submit" variant="primary" />
           </form>
         </div>
       </div>
-    </section>
+    </Section>
   );
 };
 
