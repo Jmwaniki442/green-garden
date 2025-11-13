@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
 import Section from "../common/Section";
 import Button from "../common/Button";
 
@@ -13,7 +13,6 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // For now just simulate submission
     console.log("Form submitted:", formData);
     setSubmitted(true);
     setFormData({ name: "", email: "", message: "" });
@@ -27,7 +26,7 @@ const Contact = () => {
         <div className="md:w-1/2 space-y-6">
           <div className="flex items-center gap-4">
             <Phone className="text-primary" />
-            <span className="font-semibold">+1 (555) 123-4567</span>
+            <span className="font-semibold">+254 717 163105</span>
           </div>
           <div className="flex items-center gap-4">
             <Mail className="text-primary" />

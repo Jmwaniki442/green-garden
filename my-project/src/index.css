@@ -1,1 +1,16 @@
 @import "tailwindcss";
+/* index.css */
+
+/* Brand Colors */
+:root {
+  --primary: #16a34a;        /* green */
+  --secondary: #d1fae5;      /* light green */
+  --accent: #059669;         /* darker green */
+  --neutral-dark: #1f2937;   /* dark gray */
+  --neutral-light: #f0fdf4;  /* light gray */
+}
+
+/* Optional: global typography */
+body {
+  font-family: 'Inter', sans-serif;
+}

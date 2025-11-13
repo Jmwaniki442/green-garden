@@ -1,101 +1,65 @@
-import React from "react";
-import { Mail, Phone, MapPin, Facebook, Twitter, Instagram } from "lucide-react";
+<footer className="bg-neutral-dark text-neutral-light pt-12 pb-8">
+  {/* Newsletter Section */}
+  <div className="max-w-6xl mx-auto px-6 text-center mb-10">
+    <h2 className="text-2xl font-semibold text-primary mb-2">
+      Get more discount off your order
+    </h2>
+    <p className="mb-6 text-secondary">Join our mailing list</p>
+    <div className="flex justify-center flex-wrap gap-2">
+      <input
+        type="email"
+        placeholder="Enter your email"
+        className="px-4 py-3 rounded-l-lg w-64 outline-none text-neutral-dark"
+      />
+      <button className="bg-primary hover:bg-accent text-neutral-light px-6 py-3 rounded-r-lg">
+        Shop Now
+      </button>
+    </div>
+  </div>
 
-const Footer = () => {
-  const quickLinks = [
-    { label: "Home", href: "#hero" },
-    { label: "About", href: "#about" },
-    { label: "Products", href: "#products" },
-    { label: "Contact", href: "#contact" },
-  ];
-
-  return (
-    <footer className="bg-neutralDark dark:bg-gray-900 text-white pt-16 pb-8 transition-colors duration-500">
-      <div className="container mx-auto px-6 grid gap-8 md:grid-cols-4">
-        {/* Branding */}
-        <div className="text-center md:text-left">
-          <h3 className="text-2xl md:text-3xl font-heading font-bold mb-4 text-primary dark:text-green-400">
-            GreenGarden
-          </h3>
-          <p className="text-gray-300 dark:text-gray-400 leading-relaxed">
-            Fresh, organic groceries delivered straight to your doorstep.  
-            Eat healthy, live happy.
-          </p>
-          {/* Social Media */}
-          <div className="flex justify-center md:justify-start gap-4 mt-4">
-            <a href="#" className="hover:text-primary dark:hover:text-green-400 transition-colors">
-              <Facebook size={20} />
-            </a>
-            <a href="#" className="hover:text-primary dark:hover:text-green-400 transition-colors">
-              <Twitter size={20} />
-            </a>
-            <a href="#" className="hover:text-primary dark:hover:text-green-400 transition-colors">
-              <Instagram size={20} />
-            </a>
-          </div>
-        </div>
-
-        {/* Quick Links */}
-        <div className="text-center md:text-left">
-          <h4 className="font-semibold text-lg mb-4">Quick Links</h4>
-          <ul className="space-y-2">
-            {quickLinks.map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  className="hover:text-primary dark:hover:text-green-400 focus:text-primary dark:focus:text-green-400 focus:outline-none transition-colors duration-200"
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Contact Info */}
-        <div className="text-center md:text-left">
-          <h4 className="font-semibold text-lg mb-4">Contact Us</h4>
-          <ul className="space-y-2 text-gray-300 dark:text-gray-400">
-            <li className="flex items-center justify-center md:justify-start gap-2">
-              <Phone size={18} /> +1 234 567 890
-            </li>
-            <li className="flex items-center justify-center md:justify-start gap-2">
-              <Mail size={18} /> info@greengarden.com
-            </li>
-            <li className="flex items-center justify-center md:justify-start gap-2">
-              <MapPin size={18} /> 123 Green Street, City, Country
-            </li>
-          </ul>
-        </div>
-
-        {/* Newsletter */}
-        <div className="text-center md:text-left">
-          <h4 className="font-semibold text-lg mb-4">Subscribe</h4>
-          <p className="text-gray-300 dark:text-gray-400 mb-4">
-            Get updates on new products and offers.
-          </p>
-          <form className="flex flex-col sm:flex-row items-center gap-2">
-            <input
-              type="email"
-              placeholder="Your email"
-              className="w-full px-4 py-2 rounded-lg text-gray-800 dark:text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-green-400 transition-colors"
-            />
-            <button
-              type="submit"
-              className="mt-2 sm:mt-0 px-4 py-2 bg-primary dark:bg-green-600 text-white rounded-lg hover:bg-green-700 dark:hover:bg-green-500 transition-colors"
-            >
-              Subscribe
-            </button>
-          </form>
-        </div>
+  {/* Footer Links */}
+  <div className="border-t border-neutral-light pt-10">
+    <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 px-6">
+      <div>
+        <h3 className="text-xl font-bold mb-4 text-primary">GreenGarden</h3>
+        <p className="text-secondary text-sm">
+          Fresh, organic groceries delivered straight to your doorstep. Eat healthy, live happy.
+        </p>
       </div>
 
-      {/* Bottom copyright */}
-      <div className="mt-12 border-t border-gray-700 dark:border-gray-800 pt-6 text-center text-gray-400 dark:text-gray-500 text-sm md:text-base transition-colors">
-        &copy; {new Date().getFullYear()} GreenGarden. All rights reserved.
+      <div>
+        <h4 className="font-semibold mb-4">Quick Links</h4>
+        <ul className="space-y-2 text-sm">
+          <li><a href="#hero" className="hover:text-primary transition-colors">Home</a></li>
+          <li><a href="#about" className="hover:text-primary transition-colors">About</a></li>
+          <li><a href="#products" className="hover:text-primary transition-colors">Products</a></li>
+          <li><a href="#contact" className="hover:text-primary transition-colors">Contact</a></li>
+        </ul>
       </div>
-    </footer>
-  );
-};
 
-export default Footer;
+      <div>
+        <h4 className="font-semibold mb-4">Information</h4>
+        <ul className="space-y-2 text-sm">
+          <li><a href="#about" className="hover:text-primary transition-colors">About Us</a></li>
+          <li><a href="#reviews" className="hover:text-primary transition-colors">Top Reviews</a></li>
+          <li><a href="#privacy" className="hover:text-primary transition-colors">Privacy Policy</a></li>
+          <li><a href="#terms" className="hover:text-primary transition-colors">Terms & Conditions</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 className="font-semibold mb-4">Contact</h4>
+        <ul className="space-y-2 text-sm">
+          <li>Email: info@greengarden.com</li>
+          <li>Phone: +25717163105</li>
+          <li>Address: 123 Green Street, City, Country</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  {/* Copyright */}
+  <div className="text-center mt-10 text-sm text-secondary">
+    © {new Date().getFullYear()} GreenGarden. All rights reserved.
+  </div>
+</footer>
