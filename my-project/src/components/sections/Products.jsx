@@ -6,39 +6,45 @@ const products = [
     name: "Radishes",
     price: "Ksh 150/kg",
     image:
-      "https://plus.unsplash.com/premium_photo-1723485627473-7227c17bf7ef?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=704", // Broccoli
+      "https://plus.unsplash.com/premium_photo-1723485627473-7227c17bf7ef?ixlib=rb-4.1.0&auto=format&fit=crop&q=80&w=704",
   },
   {
-    name: " Fresh Brocolli",
+    name: "Fresh Broccoli",
     price: "Ksh 180/kg",
     image:
-      "https://plus.unsplash.com/premium_photo-1702403157830-9df749dc6c1e?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1740", // Cauliflower
+      "https://plus.unsplash.com/premium_photo-1702403157830-9df749dc6c1e?ixlib=rb-4.1.0&auto=format&fit=crop&q=80&w=1740",
   },
   {
-    name: "Fresh Banana",
-    price: "Ksh 130/bunch",
+    name: "Cauliflower",
+    price: "Ksh 160/kg",
     image:
-      "https://images.pexels.com/photos/5945845/pexels-photo-5945845.jpeg", // Radishes
+      "https://images.pexels.com/photos/34637173/pexels-photo-34637173.jpeg", // Updated Cauliflower image
   },
   {
     name: "Purple Cabbage",
     price: "Ksh 200/kg",
     image:
-      "https://images.unsplash.com/photo-1692958208988-227f4d09b8b0?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1674", // Purple Cabbage updated
+      "https://images.unsplash.com/photo-1692958208988-227f4d09b8b0?ixlib=rb-4.1.0&auto=format&fit=crop&q=80&w=1674",
   },
 ];
 
 const Products = () => {
   return (
-    <section id="products" className="py-20 bg-green-50">
+    <section id="products" className="py-20 bg-neutralLight">
       <div className="container mx-auto px-6 text-center">
-        <h2 className="text-3xl font-bold text-green-800 mb-10">
+        <h2 className="text-3xl md:text-4xl font-heading font-bold text-primary mb-10">
           Fresh Vegetables
         </h2>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
-          {products.map((p, i) => (
-            <Card key={i} {...p} />
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+          {products.map((product, index) => (
+            <Card
+              key={index}
+              name={product.name}
+              price={product.price}
+              image={product.image}
+              alt={product.name} // Accessibility improvement
+            />
           ))}
         </div>
       </div>

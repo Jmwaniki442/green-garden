@@ -1,85 +1,56 @@
-import React, { useState } from "react";
-import { Menu, X } from "lucide-react";
-import Button from "../common/Button";
-import clsx from "clsx";
+import React, { useEffect, useState } from "react";
 
-/**
- * Responsive Header + Navigation Bar
- * Includes site logo, links, and CTA button.
- */
 const Header = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isDark, setIsDark] = useState(false);
 
-  const toggleMenu = () => setIsOpen(!isOpen);
+  // Initialize dark mode based on localStorage
+  useEffect(() => {
+    const storedTheme = localStorage.getItem("theme");
+    if (storedTheme === "dark") {
+      setIsDark(true);
+      document.documentElement.classList.add("dark");
+    }
+  }, []);
 
-  const navLinks = [
-    { label: "Home", href: "#hero" },
-    { label: "About", href: "#about" },
-    { label: "Products", href: "#products" },
-    { label: "Contact", href: "#contact" },
-  ];
+  const toggleDarkMode = () => {
+    if (isDark) {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    } else {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    }
+    setIsDark(!isDark);
+  };
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md shadow-sm">
-      <nav className="container mx-auto px-6 py-4 flex items-center justify-between">
-        {/* Logo */}
-        <a
-          href="#hero"
-          className="text-2xl font-heading font-bold text-primary"
-        >
-          GreenGarden
-        </a>
+    <header className="bg-neutralLight dark:bg-neutralDark text-gray-900 dark:text-white py-4 shadow-md">
+      <div className="container mx-auto flex justify-between items-center px-6">
+        <h1 className="text-2xl font-bold">GreenGarden</h1>
 
-        {/* Desktop Navigation */}
-        <ul className="hidden md:flex space-x-8 text-gray-700 font-medium">
-          {navLinks.map((link) => (
-            <li key={link.href}>
-              <a
-                href={link.href}
-                className="hover:text-primary transition-colors"
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
+        {/* Navigation (optional) */}
+        <nav className="space-x-4">
+          <a href="#hero" className="hover:text-primary dark:hover:text-green-400">
+            Home
+          </a>
+          <a href="#about" className="hover:text-primary dark:hover:text-green-400">
+            About
+          </a>
+          <a href="#products" className="hover:text-primary dark:hover:text-green-400">
+            Products
+          </a>
+          <a href="#contact" className="hover:text-primary dark:hover:text-green-400">
+            Contact
+          </a>
+        </nav>
 
-        {/* Desktop Button */}
-        <div className="hidden md:block">
-          <Button text="Shop Now" variant="primary" />
-        </div>
-
-        {/* Mobile Menu Button */}
+        {/* Dark Mode Toggle */}
         <button
-          className="md:hidden text-gray-700"
-          onClick={toggleMenu}
-          aria-label="Toggle navigation"
+          onClick={toggleDarkMode}
+          className="ml-4 px-3 py-1 rounded-md border border-gray-300 dark:border-gray-600 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
         >
-          {isOpen ? <X size={28} /> : <Menu size={28} />}
+          {isDark ? "Light Mode" : "Dark Mode"}
         </button>
-      </nav>
-
-      {/* Mobile Menu */}
-      <div
-        className={clsx(
-          "md:hidden bg-white shadow-md transition-all duration-300",
-          isOpen ? "max-h-60 opacity-100" : "max-h-0 opacity-0 overflow-hidden"
-        )}
-      >
-        <ul className="flex flex-col items-center space-y-4 py-6">
-          {navLinks.map((link) => (
-            <li key={link.href}>
-              <a
-                href={link.href}
-                className="text-gray-700 font-medium hover:text-primary transition"
-                onClick={() => setIsOpen(false)}
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
-          <Button text="Shop Now" variant="primary" />
-        </ul>
       </div>
     </header>
   );
