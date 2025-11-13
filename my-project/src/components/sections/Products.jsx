@@ -16,9 +16,9 @@ const products = [
   },
   {
     name: "Cauliflower",
-    price: "Ksh 160/kg",
+    price: "Ksh 200/kg",
     image:
-      "https://images.pexels.com/photos/34637173/pexels-photo-34637173.jpeg", // Updated Cauliflower image
+      "https://images.pexels.com/photos/34637173/pexels-photo-34637173.jpeg",
   },
   {
     name: "Purple Cabbage",
@@ -33,7 +33,7 @@ const Products = () => {
     <section id="products" className="py-20 bg-neutralLight">
       <div className="container mx-auto px-6 text-center">
         <h2 className="text-3xl md:text-4xl font-heading font-bold text-primary mb-10">
-          Fresh Vegetables
+          Fresh Vegetables from <span className="text-green-700">GreenGarden</span>
         </h2>
 
         <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
@@ -43,7 +43,7 @@ const Products = () => {
               name={product.name}
               price={product.price}
               image={product.image}
-              alt={product.name} // Accessibility improvement
+              alt={product.name}
             />
           ))}
         </div>

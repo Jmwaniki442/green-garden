@@ -3,12 +3,12 @@ import PropTypes from "prop-types";
 import clsx from "clsx";
 
 const Button = ({ text, variant = "primary", onClick, type = "button", disabled = false }) => {
-  const baseStyle = "px-6 py-3 rounded-lg font-semibold transition-colors border";
+  const baseClasses = "px-6 py-3 font-semibold rounded-lg transition focus:outline-none focus:ring-2 focus:ring-green-500";
 
-  const variantStyles = {
-    primary: "bg-white text-green-500 border-green-500 hover:bg-green-50",
-    secondary: "bg-secondary text-white hover:bg-yellow-600",
-    outline: "bg-white text-primary border-primary hover:bg-primary hover:text-white",
+  const variantClasses = {
+    primary: "bg-green-700 text-white hover:bg-green-800",
+    secondary: "bg-gray-200 text-gray-800 hover:bg-gray-300",
+    outline: "border border-green-700 text-green-700 hover:bg-green-50",
   };
 
   return (
@@ -16,7 +16,7 @@ const Button = ({ text, variant = "primary", onClick, type = "button", disabled 
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={clsx(baseStyle, variantStyles[variant])}
+      className={clsx(baseClasses, variantClasses[variant], disabled && "opacity-50 cursor-not-allowed")}
     >
       {text}
     </button>

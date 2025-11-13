@@ -30,11 +30,11 @@ const Contact = () => {
           </div>
           <div className="flex items-center gap-4">
             <Mail className="text-primary" />
-            <span className="font-semibold">support@freshbasket.com</span>
+            <span className="font-semibold">support@greengarden.com</span>
           </div>
           <div className="flex items-center gap-4">
             <MapPin className="text-primary" />
-            <span className="font-semibold">123 Market Street, Cityville</span>
+            <span className="font-semibold">254 Nairobi, Kenya</span>
           </div>
           <p className="text-gray-600 mt-4">
             Have questions or feedback? Fill out the form, and we'll get back to you promptly!
