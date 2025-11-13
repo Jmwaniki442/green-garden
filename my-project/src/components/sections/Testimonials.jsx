@@ -1,4 +1,8 @@
 import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
 
 const testimonials = [
   {
@@ -24,27 +28,38 @@ const testimonials = [
 const Testimonials = () => {
   return (
     <section id="testimonials" className="bg-green-50 py-20">
-      <div className="container mx-auto px-6 text-center">
+      <div className="max-w-6xl mx-auto px-6 text-center">
         <h2 className="text-3xl font-bold text-green-800 mb-12">
           What Our Customers Say
         </h2>
 
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <Swiper
+          modules={[Pagination, Autoplay]}
+          spaceBetween={30}
+          slidesPerView={1}
+          breakpoints={{
+            640: { slidesPerView: 1 },
+            768: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+          }}
+          pagination={{ clickable: true }}
+          autoplay={{ delay: 4000, disableOnInteraction: false }}
+          loop
+        >
           {testimonials.map((t, i) => (
-            <div
-              key={i}
-              className="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300"
-            >
-              <img
-                src={t.image}
-                alt={t.name}
-                className="w-20 h-20 mx-auto rounded-full object-cover mb-4 border-4 border-green-200"
-              />
-              <p className="text-gray-700 italic mb-4">“{t.comment}”</p>
-              <h4 className="font-semibold text-green-800">{t.name}</h4>
-            </div>
+            <SwiperSlide key={i}>
+              <div className="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transform hover:scale-105 transition duration-300 mx-4">
+                <img
+                  src={t.image}
+                  alt={t.name}
+                  className="w-20 h-20 mx-auto rounded-full object-cover mb-4 border-4 border-green-200"
+                />
+                <p className="text-gray-700 italic mb-4">“{t.comment}”</p>
+                <h4 className="font-semibold text-green-800">{t.name}</h4>
+              </div>
+            </SwiperSlide>
           ))}
-        </div>
+        </Swiper>
       </div>
     </section>
   );
