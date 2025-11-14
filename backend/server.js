@@ -1,66 +1,75 @@
 import express from "express";
 import cors from "cors";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors());
 app.use(express.json());
 
-// Dummy Products Data
-let products = [
-  {
-    id: 1,
-    name: "Fresh Broccoli",
-    description: "Organic broccoli, fresh from the farm.",
-    price: 2.99,
-    image:
-      "https://images.pexels.com/photos/870898/pexels-photo-870898.jpeg?auto=format&fit=crop&w=800&q=80",
+// MongoDB Connection
+mongoose
+  .connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log("MongoDB connected!"))
+  .catch((err) => console.log("MongoDB connection error:", err));
+
+// Schemas
+const productSchema = new mongoose.Schema({
+  name: String,
+  description: String,
+  price: Number,
+  image: String,
+});
+
+const orderSchema = new mongoose.Schema({
+  items: [
+    {
+      productId: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
+      quantity: Number,
+    },
+  ],
+  customer: {
+    name: String,
+    email: String,
+    address: String,
   },
-  {
-    id: 2,
-    name: "Purple Cabbage",
-    description: "Crunchy and healthy purple cabbage.",
-    price: 1.99,
-    image:
-      "https://images.unsplash.com/photo-1692958208988-227f4d09b8b0?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    id: 3,
-    name: "Fresh Carrots",
-    description: "Sweet organic carrots packed with vitamins.",
-    price: 1.49,
-    image:
-      "https://images.pexels.com/photos/65174/pexels-photo-65174.jpeg?auto=format&fit=crop&w=800&q=80",
-  },
-];
+  createdAt: { type: Date, default: Date.now },
+});
+
+const Product = mongoose.model("Product", productSchema);
+const Order = mongoose.model("Order", orderSchema);
 
 // Routes
 app.get("/", (req, res) => {
-  res.send("GreenGarden Backend Running!");
+  res.send("GreenGarden Backend Running with MongoDB!");
 });
 
-// Get all products
-app.get("/api/products", (req, res) => {
+// Products
+app.get("/api/products", async (req, res) => {
+  const products = await Product.find();
   res.json(products);
 });
 
-// Get single product
-app.get("/api/products/:id", (req, res) => {
-  const product = products.find(p => p.id === parseInt(req.params.id));
+app.get("/api/products/:id", async (req, res) => {
+  const product = await Product.findById(req.params.id);
   if (!product) return res.status(404).json({ message: "Product not found" });
   res.json(product);
 });
 
-// Add order (simplified)
-app.post("/api/orders", (req, res) => {
+// Orders
+app.post("/api/orders", async (req, res) => {
   const { items, customer } = req.body;
-  if (!items || !customer) {
+  if (!items || !customer)
     return res.status(400).json({ message: "Missing order details" });
-  }
-  // Here you would normally save to a database
-  res.status(201).json({ message: "Order received!", order: { items, customer } });
+
+  const order = new Order({ items, customer });
+  await order.save();
+  res.status(201).json({ message: "Order placed successfully!", order });
 });
 
 // Start server

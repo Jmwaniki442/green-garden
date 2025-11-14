@@ -1,28 +1,18 @@
-import React from "react";
-import PropTypes from "prop-types";
-import Button from "./Button";
 
-const Card = ({ name, price, image }) => {
+import React from "react";
+
+const Card = ({ image, title, description, price, children }) => {
   return (
-    <div className="bg-white rounded-2xl shadow-md hover:shadow-lg transition p-4 flex flex-col items-center text-center">
-      <img
-        src={image}
-        alt={name} // accessibility
-        className="w-full h-48 object-cover rounded-xl mb-4"
-        loading="lazy"
-      />
-      <h3 className="text-lg font-semibold text-green-800 mb-2">{name}</h3>
-      <p className="text-gray-700 mb-4">{price}</p>
-      {/* Optional CTA button */}
-      <Button text="Add to Cart" variant="primary" />
+    <div className="bg-white rounded-2xl shadow hover:shadow-lg overflow-hidden transition duration-300">
+      {image && <img src={image} alt={title} className="w-full h-56 object-cover" />}
+      <div className="p-6">
+        {title && <h3 className="text-2xl font-semibold mb-2">{title}</h3>}
+        {description && <p className="text-gray-600 mb-4">{description}</p>}
+        {price && <p className="text-lg font-bold">{price}</p>}
+        {children}
+      </div>
     </div>
   );
-};
-
-Card.propTypes = {
-  name: PropTypes.string.isRequired,
-  price: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
 };
 
 export default Card;
