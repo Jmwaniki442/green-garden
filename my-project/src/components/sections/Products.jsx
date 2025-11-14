@@ -1,39 +1,48 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Card from "../common/Card";
 
-const products = [
-  {
-    name: "Radishes",
-    price: "Ksh 150/kg",
-    image:
-      "https://plus.unsplash.com/premium_photo-1723485627473-7227c17bf7ef?ixlib=rb-4.1.0&auto=format&fit=crop&q=80&w=704",
-  },
-  {
-    name: "Fresh Broccoli",
-    price: "Ksh 180/kg",
-    image:
-      "https://plus.unsplash.com/premium_photo-1702403157830-9df749dc6c1e?ixlib=rb-4.1.0&auto=format&fit=crop&q=80&w=1740",
-  },
-  {
-    name: "Cauliflower",
-    price: "Ksh 200/kg",
-    image:
-      "https://images.pexels.com/photos/34637173/pexels-photo-34637173.jpeg",
-  },
-  {
-    name: "Purple Cabbage",
-    price: "Ksh 200/kg",
-    image:
-      "https://images.unsplash.com/photo-1692958208988-227f4d09b8b0?ixlib=rb-4.1.0&auto=format&fit=crop&q=80&w=1674",
-  },
-];
-
 const Products = () => {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // Use environment variable for API URL
+  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
+  useEffect(() => {
+    // Fetch products from backend
+    fetch(`${API_URL}/api/products`)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Failed to fetch products");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        setProducts(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err.message);
+        setLoading(false);
+      });
+  }, [API_URL]);
+
+  if (loading)
+    return <p className="text-center py-10">Loading products...</p>;
+  if (error)
+    return (
+      <p className="text-center py-10 text-red-500">
+        {error}
+      </p>
+    );
+
   return (
     <section id="products" className="py-20 bg-neutralLight">
       <div className="container mx-auto px-6 text-center">
         <h2 className="text-3xl md:text-4xl font-heading font-bold text-primary mb-10">
-          Fresh Vegetables from <span className="text-green-700">GreenGarden</span>
+          Fresh Vegetables from{" "}
+          <span className="text-green-700">GreenGarden</span>
         </h2>
 
         <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
