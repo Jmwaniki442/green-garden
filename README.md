@@ -183,7 +183,6 @@ Backend
 
 Express.js
 
-MongoDB
 
 CORS
 
