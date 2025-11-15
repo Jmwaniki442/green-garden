@@ -142,7 +142,7 @@ Unsplash.com
 
 1️⃣ Clone Repository
 
-git clone https://github.com/YOUR-USERNAME/green-garden
+git clone https://github.com/Jmwaniki442/green-garden
 cd green-garden
 
 2️⃣ Install Dependencies
