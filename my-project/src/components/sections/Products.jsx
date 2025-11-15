@@ -6,7 +6,7 @@ const Products = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Use environment variable for API URL
+  // API URL (Render environment variable or localhost for development)
   const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
   useEffect(() => {
@@ -30,6 +30,7 @@ const Products = () => {
 
   if (loading)
     return <p className="text-center py-10">Loading products...</p>;
+
   if (error)
     return (
       <p className="text-center py-10 text-red-500">
@@ -46,9 +47,9 @@ const Products = () => {
         </h2>
 
         <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-          {products.map((product, index) => (
+          {products.map((product) => (
             <Card
-              key={index}
+              key={product._id || product.id}
               name={product.name}
               price={product.price}
               image={product.image}
