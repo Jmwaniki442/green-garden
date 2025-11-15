@@ -1,139 +1,236 @@
-# GreenGarden
-Live Demo
 
-https://green-garden-3.onrender.com
+#Live Demo
 
-Project Overview
-
-GreenGarden is an online platform showcasing fresh, locally sourced vegetables. The website provides users with a seamless shopping experience, highlighting product freshness, quality, and accessibility.
-
-Brand Identity
-Color System
-
-Primary: #16A34A (green) – represents freshness, growth, and sustainability
-
-Secondary: #1F2937 (dark gray) – ensures readability and neutral background for product focus
-
-Accent: #FBBF24 (yellow) – draws attention to calls-to-action and highlights
-
-Typography
-
-Headings: 'Poppins', sans-serif – modern and clean, improves readability for product titles
-
-Body: 'Roboto', sans-serif – neutral, legible, and pairs well with headings
-
-Design Decisions
-Layout Adherence
-
-Used Tailwind CSS utility classes for consistent spacing and alignment
-
-Layout measured with 8pt grid system for uniform spacing
-
-Tools: Figma for design mockups and alignment accuracy
-
-Creative Departures
-
-Implemented product emphasis using high-quality images
-
-Content strategy focuses on transparency and sustainability
-
-Medium (MD) breakpoint designed to enhance tablet experience with optimized grid
-
-Component Architecture
-
-Card Component: Reusable for each product
-
-Products Section: Dynamically fetches data from backend
-
-Hero Section: Centralized landing section with full-screen imagery
-
-Components structured in /src/components for modularity and reusability
-
-Performance Optimizations
-
-Lazy loading product images
-
-Tailwind JIT mode enabled to minimize CSS size
-
-Optimized Vite build for fast page load
-
-Image Credits
-
-Images sourced from Unsplash and Pexels
-
-Proper attribution included in project notes
-
-Installation & Setup
-
-Clone the repository:
-
-git clone https://github.com/Jmwaniki442/green-garden.git
+👉 https://green-garden-12.onrender.com
 
 
-Install dependencies for frontend and backend:
+---
 
-cd backend
+📌 Project Overview
+
+GreenGarden is a modern, responsive website designed for gardening and landscaping services.
+It focuses on:
+
+Clean + aesthetic nature-themed design
+
+Smooth user flow
+
+Brand consistency
+
+High performance (optimized with Vite)
+
+Responsive UI for mobile, tablet, and desktop
+
+
+This project includes a fully deployed backend API + frontend UI.
+
+
+---
+
+🎨 Brand Identity
+
+🌈 Color System
+
+Color	Hex	Usage
+
+🌿 Primary Green	#2E7D32	Represents nature, growth, freshness
+🌼 Accent Yellow	#F4B400	Calls-to-action, highlights
+⚫ Neutral Dark	#1A1A1A	Text, contrast
+⚪ Neutral Light	#F9F9F9	Background + spacing
+
+
+
+---
+
+✍️ Typography
+
+Headings: Poppins — modern, premium, friendly
+
+Body Text: Inter — optimized for readability and clean UI
+
+
+
+---
+
+🧩 Design Decisions
+
+📐 Layout Accuracy
+
+Pixel-perfect spacing using Figma Inspector
+
+Consistent grid structure (Tailwind utilities)
+
+Responsive breakpoints: sm, md, lg, xl
+
+
+🎨 Creative Departures
+
+improved content for SEO + brand tone
+
+enhanced medium-screen layout for tablets
+
+added more spacing for cleaner visual hierarchy
+
+
+
+---
+
+🏗 Component Architecture
+
+GreenGarden uses a modular component-based structure:
+
+HeroSection.jsx
+
+AboutSection.jsx
+
+Services.jsx
+
+Gallery.jsx
+
+Testimonials.jsx
+
+ContactForm.jsx
+
+Footer.jsx
+
+
+Features:
+
+Reusable components
+
+Props-driven content
+
+Clean folder separation
+
+Config files for icons + constants
+
+
+
+---
+
+⚡ Performance Optimizations
+
+Image lazy loading
+
+Minimal bundle using Vite
+
+CDN caching in production
+
+Tailwind JIT engine
+
+SVG icons instead of PNG
+
+
+
+---
+
+📸 Image Credits
+
+All images are sourced from:
+
+Pexels.com
+
+Unsplash.com
+
+
+(Free for personal and commercial use.)
+
+
+---
+
+🛠 Installation & Setup
+
+1️⃣ Clone Repository
+
+git clone https://github.com/YOUR-USERNAME/green-garden
+cd green-garden
+
+2️⃣ Install Dependencies
+
 npm install
-cd ../frontend
-npm install
+
+3️⃣ Run Development Server
+
+npm run dev
+
+4️⃣ Build Production Files
+
+npm run build
+
+5️⃣ Preview Build
+
+npm run preview
 
 
-Set up environment variables:
+---
 
-# frontend/.env
+🧰 Technologies Used
+
+Frontend
+
+React 18
+
+Tailwind CSS v4
+
+Vite v5
+
+Lucide React Icons
+
+Swiper.js
+
+
+Backend
+
+Express.js
+
+MongoDB
+
+CORS
+
+
+
+---
+
+🐛 Challenges & Solutions
+
+1️⃣ Render Port Binding Failed
+
+Cause: Vite preview didn’t expose the port.
+Solution: Added:
+
+vite preview --host 0.0.0.0 --port $PORT
+
+
+---
+
+2️⃣ API Calls Failing on Production
+
+Cause: Hardcoded localhost URLs.
+Solution: Used environment variable:
+
 VITE_API_URL=https://green-garden-3.onrender.com
 
 
-Run locally:
+---
 
-# backend
-npm run dev
+3️⃣ Tailwind Not Loading
 
-# frontend
-npm run dev
+Cause: Missing plugin configuration.
+Solution: Added:
 
-Technologies Used
+import tailwindcss from "@tailwindcss/vite";
 
-React: v18.2.0
 
-Tailwind CSS: latest v3+
+---
 
-Vite: v7.2.2
+🚀 Future Improvements
 
-Other Packages: clsx, lucide-react, swiper
+Admin dashboard for managing garden services
 
-Challenges & Solutions
+Full CMS integration
 
-Removed MongoDB & Mongoose: Replaced with static JSON in backend for simplicity
+Booking/appointment system
 
-Frontend API Integration: Configured VITE_API_URL to handle local and deployed environments
+Chatbot assistant for customer support
 
-Responsive Grid: Implemented Tailwind CSS grid to work across LG, MD, and SM breakpoints
-
-Future Improvements
-
-Add shopping cart functionality with local storage or backend integration
-
-Implement user authentication for personalized experience
-
-Add search and filter functionality for products
-
-Submission Requirements Checklist
-
- GitHub repository with clear commit history
-
- Meaningful commit messages
-
- .gitignore configured (no node_modules or dist/build folders)
-
- ESLint configuration included
-
- Code formatting consistent
-
- No console.log in production
-
- Screenshots in /screenshots folder showing:
-
-LG, MD, SM breakpoints
-
-Lighthouse scores
+Blog section for gardening tips
