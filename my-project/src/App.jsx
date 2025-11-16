@@ -1,6 +1,5 @@
 import React from "react";
 import Header from "./components/layout/Header";
-import Navigation from "./components/layout/Navigation";
 import Hero from "./components/sections/Hero";
 import Stats from "./components/sections/Stats";
 import About from "./components/sections/About";
@@ -15,7 +14,7 @@ const App = () => {
     <div className="bg-lightblue-50 text-lightblue-800">
       {/* Top Navigation */}
       <Header />
-      <Navigation />
+      
 
       {/* Hero Section */}
       <Hero />
