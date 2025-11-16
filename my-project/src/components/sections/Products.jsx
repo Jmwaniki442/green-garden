@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+ import React, { useEffect, useState } from "react";
 import Card from "../common/Card";
 
 const Products = () => {
@@ -62,4 +62,4 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default Products; 
