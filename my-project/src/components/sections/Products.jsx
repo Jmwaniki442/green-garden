@@ -1,4 +1,4 @@
- import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Card from "../common/Card";
 
 const Products = () => {
@@ -29,7 +29,7 @@ const Products = () => {
   }, [API_URL]);
 
   if (loading)
-    return <p className="text-center py-10">Loading products...</p>;
+    return <p className="text-center py-10 text-gray-700">Loading products...</p>;
 
   if (error)
     return (
@@ -39,17 +39,17 @@ const Products = () => {
     );
 
   return (
-    <section id="products" className="py-20 bg-neutralLight">
+    <section id="products" className="py-20 bg-gray-50">
       <div className="container mx-auto px-6 text-center">
-        <h2 className="text-3xl md:text-4xl font-heading font-bold text-primary mb-10">
+        <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-10">
           Fresh Vegetables from{" "}
           <span className="text-green-700">GreenGarden</span>
         </h2>
 
         <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-          {products.map((product) => (
+          {products.map((product, index) => (
             <Card
-              key={product._id || product.id}
+              key={product._id || product.id || index} // ensures unique key
               name={product.name}
               price={product.price}
               image={product.image}
@@ -62,4 +62,4 @@ const Products = () => {
   );
 };
 
-export default Products; 
+export default Products;

@@ -1,4 +1,6 @@
 @import "tailwindcss";
+
+/* Define your custom theme colors */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -13,4 +15,5 @@
 .animate-fadeIn {
   animation: fadeIn 1.2s ease-out forwards;
 }
+
 
